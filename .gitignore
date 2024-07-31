@@ -1,6 +1,7 @@
 .gradle
 build/
-
+certificate
+local.properties
 
 ### IntelliJ IDEA ###
 .idea/

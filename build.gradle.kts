@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+import org.jetbrains.kotlin.konan.properties.loadProperties
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.24"
@@ -41,9 +44,11 @@ tasks {
     }
 
     signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        val properties = Properties()
+        properties.load(file("local.properties").inputStream())
+        certificateChainFile.set(file("certificate/chain.crt"))
+        privateKeyFile.set(file("certificate/private.pem"))
+        password.set(properties["privateKeyPassword"] as String)
     }
 
     publishPlugin {

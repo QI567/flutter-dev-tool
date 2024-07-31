@@ -21,6 +21,7 @@ public class FlutterWidgetAction extends AnAction {
         flutterWidgetDialog.pack();
         flutterWidgetDialog.setLocationRelativeTo(null);
         flutterWidgetDialog.setVisible(true);
+        if (!flutterWidgetDialog.isOk()) return;
         VirtualFile selectedFile = dartFileUtil.getSelectedFile(e);
         String name = flutterWidgetDialog.getName();
         String fileName = dartFileUtil.toUnderline(name);
