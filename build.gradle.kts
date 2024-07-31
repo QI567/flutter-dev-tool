@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.konan.properties.Properties
-import org.jetbrains.kotlin.konan.properties.loadProperties
 
 plugins {
     id("java")
@@ -8,7 +7,7 @@ plugins {
 }
 
 group = "com.qi"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     maven(  "https://maven.aliyun.com/repository/central")

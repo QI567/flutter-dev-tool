@@ -14,10 +14,22 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Flutter Development Tools <br>
-    <em>1. Create mvc module </em>
-    <em>2. Create the StatefulWidget component </em>
-    <em>2. Create StatelessWidget component </em>
+   <h1>Usage</h1>
+   <h2>How to create widget?</h2>
+   <ul>
+       <li>Right click on package -> New -> Flutter Widget</li>
+       <li>Enter widget name</li>
+       <li>Select widget type</li>
+       <li>Click OK</li>
+   </ul>
+   <h2>How to create page?</h2>
+   <ul>
+       <li>Right click on package -> New -> Flutter Mvc</li>
+       <li>Enter mvc name</li>
+       <li>Select whether to use the go_router</li>
+       <li>Click OK</li>
+   </ul>
+   <a href="https://github.com/QI567/flutter-dev-tool">Know more</a>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
