@@ -43,13 +43,13 @@
 
     </extensions>
     <actions>
-        <action id="flutter_mvc" class="com.qi.flutterdevtool.action.mvc.FlutterMvcAction" text="Flutter Mvc"
-                description="创建mvc模块">
+        <action id="flutter_page" class="com.qi.flutterdevtool.action.page.FlutterPageAction" text="Flutter Page"
+                description="创建Flutter Page">
             <add-to-group group-id="NewGroup" anchor="first"/>
         </action>
         <action id="flutter_widget" class="com.qi.flutterdevtool.action.widget.FlutterWidgetAction"
                 text="Flutter Widget" description="创建Flutter Widget">
-            <add-to-group group-id="NewGroup" anchor="first"/>
+            <add-to-group group-id="NewGroup" relative-to-action="flutter_page" anchor="after"/>
         </action>
     </actions>
 </idea-plugin>

@@ -1,27 +1,22 @@
-package com.qi.flutterdevtool.action.mvc;
+package com.qi.flutterdevtool.action.page;
 
-import com.intellij.ide.IdeView;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiDirectory;
-import com.qi.flutterdevtool.action.mvc.dialog.FlutterMvcDialog;
+import com.qi.flutterdevtool.action.page.dialog.FlutterPageDialog;
 import com.qi.flutterdevtool.utils.DartFileUtil;
 
 import java.io.File;
 import java.util.HashMap;
 
-public class FlutterMvcAction extends AnAction {
+public class FlutterPageAction extends AnAction {
     DartFileUtil dartFileUtil = new DartFileUtil();
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        FlutterMvcDialog flutterMvcDialog = new FlutterMvcDialog();
+        FlutterPageDialog flutterMvcDialog = new FlutterPageDialog();
         flutterMvcDialog.pack();
         flutterMvcDialog.setLocationRelativeTo(null);
         flutterMvcDialog.setVisible(true);

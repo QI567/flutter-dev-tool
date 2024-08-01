@@ -17,13 +17,7 @@ class _${className}State extends State<${className}> {
 
     @override
      Widget build(BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-
-          ),
-          body: Column(
-
-          ),
-        );
+         // TODO: implement build
+         throw UnimplementedError();
      }
 }

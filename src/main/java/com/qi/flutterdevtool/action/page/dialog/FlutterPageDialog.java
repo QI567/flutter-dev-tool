@@ -1,4 +1,4 @@
-package com.qi.flutterdevtool.action.mvc.dialog;
+package com.qi.flutterdevtool.action.page.dialog;
 
 import com.intellij.openapi.ui.Messages;
 import org.apache.commons.lang3.StringUtils;
@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class FlutterMvcDialog extends JDialog {
+public class FlutterPageDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -17,7 +17,7 @@ public class FlutterMvcDialog extends JDialog {
     private boolean useGoRouter;
     private boolean isOk;
 
-    public FlutterMvcDialog() {
+    public FlutterPageDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -62,7 +62,7 @@ public class FlutterMvcDialog extends JDialog {
         return isOk;
     }
     public static void main(String[] args) {
-        FlutterMvcDialog dialog = new FlutterMvcDialog();
+        FlutterPageDialog dialog = new FlutterPageDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
