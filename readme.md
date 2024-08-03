@@ -3,7 +3,7 @@
 ## How to update appId、appName、icon、launchImage?
 ##### 1. Right click on package -> New -> Flutter Project Config
 ![img.png](imgs/img7.png)
-##### 2. Enter the content you want to modify。Use a 3x image for LaunchImage
+##### 2. Enter the content you want to modify. The LaunchImage uses a 3x image and the icon size is 1024 x 1024
 ##### 3. Click OK
 ![img.png](imgs/img8.png)
 

@@ -26,12 +26,12 @@ public class FlutterProjectConfigDialog extends JDialog {
         launchImage.setMinimumSize(new Dimension(launchWidth, launchHeight));
         iconImage.setMinimumSize(new Dimension(iconSize, iconSize));
         setContentPane(contentPane);
-        URL url = getClass().getClassLoader().getResource("icon.png");
-        if (url != null) {
-            ImageIcon imageIcon = new ImageIcon(url);
-            imageIcon.setImage(imageIcon.getImage().getScaledInstance(iconSize, iconSize, Image.SCALE_FAST));
-            iconImage.setIcon(imageIcon);
-        }
+//        URL url = getClass().getClassLoader().getResource("icon.png");
+//        if (url != null) {
+//            ImageIcon imageIcon = new ImageIcon(url);
+//            imageIcon.setImage(imageIcon.getImage().getScaledInstance(iconSize, iconSize, Image.SCALE_FAST));
+//            iconImage.setIcon(imageIcon);
+//        }
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         iconImage.addActionListener(new ActionListener() {
