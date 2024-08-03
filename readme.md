@@ -1,5 +1,12 @@
 # Usage
 
+## How to update appId、appName、icon、launchImage?
+##### 1. Right click on package -> New -> Flutter Project Config
+![img.png](imgs/img7.png)
+##### 2. Enter the content you want to modify。Use a 3x image for LaunchImage
+##### 3. Click OK
+![img.png](imgs/img8.png)
+
 ## How to create widget?
 
 ##### 1. Right click on package -> New -> Flutter Widget
@@ -12,7 +19,7 @@
 
 ## How to create page?
 
-##### 1. Right click on package -> New -> Flutter Mvc
+##### 1. Right click on package -> New -> Flutter Page
 ![img.png](imgs/img4.png)
 ##### 2. Enter mvc name
 ![img.png](imgs/img5.png)
