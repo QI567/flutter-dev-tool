@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.qi"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     maven(  "https://maven.aliyun.com/repository/central")
