@@ -4,18 +4,25 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.24"
     id("org.jetbrains.intellij") version "1.17.3"
+    id("com.qi.proguard")
 }
 
 group = "com.qi"
 version = "1.0.2"
 
 repositories {
-    maven(  "https://maven.aliyun.com/repository/central")
-    maven(  "https://maven.aliyun.com/repository/public")
-    maven(  "https://maven.aliyun.com/repository/google")
-    maven(  "https://maven.aliyun.com/repository/jcenter")
-    maven(  "https://maven.aliyun.com/repository/gradle-plugin")
+    maven("https://maven.aliyun.com/repository/central")
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    maven("https://maven.aliyun.com/repository/jcenter")
+    maven("https://maven.aliyun.com/repository/gradle-plugin")
     mavenCentral()
+}
+
+buildscript {
+    dependencies {
+        classpath("com.guardsquare:proguard-gradle:7.5.0")
+    }
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -53,8 +60,11 @@ tasks {
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
+
 }
+
 
 dependencies {
     implementation("org.freemarker:freemarker:2.3.31")
 }
+

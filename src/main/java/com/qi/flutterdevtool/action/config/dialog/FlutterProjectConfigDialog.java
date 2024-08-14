@@ -1,11 +1,10 @@
-package com.qi.flutterdevtool.action.launcher.dialog;
+package com.qi.flutterdevtool.action.config.dialog;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.net.URL;
 
 public class FlutterProjectConfigDialog extends JDialog {
     private JPanel contentPane;

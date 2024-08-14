@@ -2,15 +2,12 @@ package com.qi.flutterdevtool.utils;
 
 import com.intellij.ide.IdeView;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileOutputStream;

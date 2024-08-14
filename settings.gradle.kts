@@ -6,3 +6,5 @@ pluginManagement {
 }
 
 rootProject.name = "flutter-dev-tool"
+
+includeBuild("gradle/proguard-plugin")

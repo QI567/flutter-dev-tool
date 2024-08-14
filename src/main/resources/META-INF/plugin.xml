@@ -49,7 +49,7 @@
 
     </extensions>
     <actions>
-        <action id="flutter_project_config" class="com.qi.flutterdevtool.action.launcher.FlutterProjectConfigAction"
+        <action id="flutter_project_config" class="com.qi.flutterdevtool.action.config.FlutterProjectConfigAction"
                 text="Flutter Project Config" description="生成icon、splash、appId">
             <add-to-group group-id="NewGroup"  anchor="first"/>
         </action>

@@ -1,4 +1,4 @@
-package com.qi.flutterdevtool.action.launcher;
+package com.qi.flutterdevtool.action.config;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.util.ui.ImageUtil;
-import com.qi.flutterdevtool.action.launcher.dialog.FlutterProjectConfigDialog;
+import com.qi.flutterdevtool.action.config.dialog.FlutterProjectConfigDialog;
 import com.qi.flutterdevtool.utils.FlutterProjectConstant;
 import com.qi.flutterdevtool.utils.QiFileUtil;
 import org.apache.commons.io.FileUtils;
