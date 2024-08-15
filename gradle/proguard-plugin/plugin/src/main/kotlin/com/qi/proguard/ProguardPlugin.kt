@@ -3,13 +3,18 @@
  */
 package com.qi.proguard
 
+import com.qi.proguard.task.ArchiveTask
 import groovy.lang.GroovyObject
-import org.apache.commons.io.FileUtils
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Configuration
-import org.gradle.api.tasks.bundling.Zip
+import org.gradle.api.artifacts.Dependency
+import org.gradle.api.file.RegularFile
+import org.gradle.api.internal.artifacts.DefaultDependencySet
+import org.gradle.api.internal.artifacts.configurations.DefaultConfigurationContainer
+import org.gradle.api.internal.artifacts.configurations.DefaultUnlockedConfiguration
+import org.gradle.api.internal.file.DefaultFilePropertyFactory
+import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import proguard.gradle.ProGuardTask
 import java.io.File
 
@@ -20,33 +25,30 @@ class ProguardPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         var version = project.version
-        val ideaSandBoxPluginLibFile: File =
-            project.layout.buildDirectory.file("idea-sandbox/plugins/${project.name}/lib").get().asFile
-        val searchableOptionFile: File = project.layout.buildDirectory.file("libsSearchableOptions/lib").get().asFile
-        val outputDir: File = project.layout.buildDirectory.file("output").get().asFile
-        var outputLibDir = File(outputDir, "${project.name}-${version}/lib")
-        var proguardChangeLogPath = "${outputLibDir.parent}/${project.name}-${version}-ProGuard-ChangeLog.txt"
-        var inJarsPath = "${outputLibDir.absolutePath}/instrumented-${project.name}-${version}.jar"
-        var outJarsPath = "${outputLibDir.absolutePath}/obscure-${project.name}-${version}.jar"
+//        val ideaSandBoxPluginLibFile: File =
+//            project.layout.buildDirectory.file("idea-sandbox/plugins/${project.name}/lib").get().asFile
+//        val searchableOptionFile: File = project.layout.buildDirectory.file("libsSearchableOptions/lib").get().asFile
+//        val outputDir: File = project.layout.buildDirectory.file("output").get().asFile
+//        var outputLibDir = File(outputDir, "${project.name}-${version}/lib")
+//        var proguardChangeLogPath = "${outputLibDir.parent}/${project.name}-${version}-ProGuard-ChangeLog.txt"
+
+
         project.gradle.projectsEvaluated {
             version = project.version
-            outputLibDir = File(outputDir, "${project.name}-${version}/lib")
-            proguardChangeLogPath =
-                "${outputLibDir.parent}/${project.name}-${version}-ProGuard-ChangeLog.txt"
-            inJarsPath = "${outputLibDir.absolutePath}/instrumented-${project.name}-${version}.jar"
-            outJarsPath = "${outputLibDir.absolutePath}/obscure-${project.name}-${version}.jar"
+//            outputLibDir = File(outputDir, "${project.name}-${version}/lib")
+//            proguardChangeLogPath =
+//                "${outputLibDir.parent}/${project.name}-${version}-ProGuard-ChangeLog.txt"
         }
 
         val proguardBuildPluginTaskProvide =
             project.tasks.register("proguardBuildPlugin", ProGuardTask::class.java) { task ->
                 task.dependsOn("buildPlugin")
-                println("proguard configuration")
                 task.description = "build and proguard plugin project"
                 task.group = "archive"
                 // 配置混淆开始==================================>
                 task.verbose()
-                task.injars(inJarsPath)
-                task.outjars(outJarsPath)
+                task.injars(project.layout.buildDirectory.file("libs/instrumented-${project.name}-${version}.jar"))
+                task.outjars(project.layout.buildDirectory.file("libs/obscure-${project.name}-${version}.jar"))
                 task.configuration(File("proguard.pro"))
                 val javaHome = System.getProperty("java.home")
                 File("$javaHome/jmods/").listFiles()?.forEach { task.libraryjars(it.absolutePath) }
@@ -57,7 +59,7 @@ class ProguardPlugin : Plugin<Project> {
                 task.adaptclassstrings("**.xml")
                 task.adaptresourcefilecontents("**.xml")
                 task.adaptresourcefilenames()
-                task.printmapping(proguardChangeLogPath)
+                task.printmapping(project.layout.buildDirectory.file("libs/${project.name}-${version}-ProGuard-ChangeLog.txt"))
                 // Allow methods with the same signature, except for the return type,
                 // to get the same obfuscation name.
                 task.overloadaggressively()
@@ -68,36 +70,31 @@ class ProguardPlugin : Plugin<Project> {
                 // Put all obfuscated classes into the nameless root package.
                 task.repackageclasses("")
                 // 配置混淆结束<==================================
-                task.doFirst {
-                    println("proguard do first")
-                    if (outputDir.exists()) {
-                        FileUtils.deleteDirectory(outputDir)
-                    }
-                    FileUtils.forceMkdir(outputLibDir)
-                    FileUtils.copyDirectory(
-                        ideaSandBoxPluginLibFile,
-                        outputLibDir
-                    )
-                    FileUtils.copyDirectory(
-                        searchableOptionFile,
-                        outputLibDir
-                    )
-                }
-
-                task.doLast {
-                    FileUtils.forceDelete(File(inJarsPath))
-                }
             }
 
-        project.tasks.register("archive", Zip::class.java) { task ->
+        project.tasks.register("archive", ArchiveTask::class.java) { task ->
             task.dependsOn(proguardBuildPluginTaskProvide.get())
             task.description = "archive proguard files"
             task.group = "archive"
-            task.from(outputLibDir)
+            val srcFiles = mutableListOf<Provider<RegularFile>>()
+            srcFiles.add(project.layout.buildDirectory.file("libs/obscure-${project.name}-${version}.jar"))
+            srcFiles.add(project.layout.buildDirectory.file("libsSearchableOptions/lib/searchableOptions-${version}.jar"))
+            val runtimeClasspath: DefaultUnlockedConfiguration = (project.configurations as GroovyObject).getProperty("runtimeClasspath") as DefaultUnlockedConfiguration
+            val classPathFiles: MutableSet<File> = runtimeClasspath.resolve()
+            classPathFiles.forEach { classPathFile->
+                val fileProvider = project.layout.buildDirectory.file(classPathFile.path)
+                srcFiles.add(fileProvider)
+            }
+            val zipFile = project.rootProject.layout.buildDirectory.file("output/${project.name}-${version}.zip")
+            task.srcFiles.set(project.rootProject.layout.files(srcFiles))
+            task.outFile.set(zipFile)
+            task.archiveFileName.convention(zipFile.get().asFile.path)
+
+            task.from(*(srcFiles.map { it.get().asFile }.toTypedArray()))
             task.include("*")
             task.include("*/*")
             task.into("${project.name}/lib")
-            task.archiveFileName.convention("${outputDir.path}/${project.name}-${version}.zip")
+
             println("archiveFile: ${task.archiveFile.get().asFile.path}")
         }
     }
