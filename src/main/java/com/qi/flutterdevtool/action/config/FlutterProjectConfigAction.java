@@ -8,6 +8,7 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.util.ui.ImageUtil;
 import com.qi.flutterdevtool.action.config.dialog.FlutterProjectConfigDialog;
 import com.qi.flutterdevtool.utils.FlutterProjectConstant;
+import com.qi.flutterdevtool.utils.I18nUtil;
 import com.qi.flutterdevtool.utils.QiFileUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -233,7 +234,7 @@ public class FlutterProjectConfigAction extends AnAction {
             file = new File(projectPath, FlutterProjectConstant.ANDROID_APP_DIR + "build.gradle.kts");
         }
         if (!file.exists()) {
-            Messages.showErrorDialog("未发现android\\app\\build.gradle", "错误");
+            Messages.showErrorDialog(I18nUtil.getString("File.not.find" + "android\\app\\build.gradle"), I18nUtil.getString("error"));
             return "";
         }
         StringBuilder stringBuilder = new StringBuilder();
@@ -268,7 +269,7 @@ public class FlutterProjectConfigAction extends AnAction {
     private void modifyBundleIdentifier(String projectPath, String bundleIdentifier) {
         File file = new File(projectPath, FlutterProjectConstant.IOS_XCODEPROJ_PATH);
         if (!file.exists()) {
-            Messages.showErrorDialog("未发现" + FlutterProjectConstant.IOS_XCODEPROJ_PATH, "错误");
+            Messages.showErrorDialog(I18nUtil.getString("file.not.found") + FlutterProjectConstant.IOS_XCODEPROJ_PATH, I18nUtil.getString("error"));
             return;
         }
         StringBuilder stringBuilder = new StringBuilder();
@@ -305,7 +306,7 @@ public class FlutterProjectConfigAction extends AnAction {
     private void modifyAndroidAppName(String projectPath, String appName) {
         File file = new File(projectPath, FlutterProjectConstant.ANDROID_MANIFEST_PATH);
         if (!file.exists()) {
-            Messages.showErrorDialog("未发现" + FlutterProjectConstant.ANDROID_MANIFEST_PATH, "错误");
+            Messages.showErrorDialog(I18nUtil.getString("file.not.found") + FlutterProjectConstant.ANDROID_MANIFEST_PATH, I18nUtil.getString("error"));
             return;
         }
         StringBuilder stringBuilder = new StringBuilder();
@@ -338,7 +339,7 @@ public class FlutterProjectConfigAction extends AnAction {
     private void modifyIosAppName(String projectPath, String appName) {
         File file = new File(projectPath, FlutterProjectConstant.IOS_INFO_PATH);
         if (!file.exists()) {
-            Messages.showErrorDialog("未发现" + FlutterProjectConstant.IOS_INFO_PATH, "错误");
+            Messages.showErrorDialog(I18nUtil.getString("file.not.found") + FlutterProjectConstant.IOS_INFO_PATH, I18nUtil.getString("error"));
             return;
         }
         StringBuilder stringBuilder = new StringBuilder();

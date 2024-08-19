@@ -1,5 +1,7 @@
 package com.qi.flutterdevtool.action.config.dialog;
 
+import com.qi.flutterdevtool.utils.I18nUtil;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -74,7 +76,7 @@ public class FlutterProjectConfigDialog extends JDialog {
 
     private void pickLaunchImage() {
         JFileChooser jFileChooser = new JFileChooser();
-        jFileChooser.setFileFilter(new FileNameExtensionFilter("选择启动图", "png"));
+        jFileChooser.setFileFilter(new FileNameExtensionFilter(I18nUtil.getString("select.launch.image"), "png"));
         int res = jFileChooser.showOpenDialog(null);
         if (res == JFileChooser.APPROVE_OPTION) {
             launchImageFile = jFileChooser.getSelectedFile();
@@ -86,7 +88,7 @@ public class FlutterProjectConfigDialog extends JDialog {
 
     private void pickIcon() {
         JFileChooser jFileChooser = new JFileChooser();
-        jFileChooser.setFileFilter(new FileNameExtensionFilter("选择图标", "png"));
+        jFileChooser.setFileFilter(new FileNameExtensionFilter(I18nUtil.getString("select.icon"), "png"));
         int res = jFileChooser.showOpenDialog(null);
         if (res == JFileChooser.APPROVE_OPTION) {
             iconFile = jFileChooser.getSelectedFile();
