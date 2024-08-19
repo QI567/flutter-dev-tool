@@ -1,6 +1,7 @@
 package com.qi.flutterdevtool.action.page.dialog;
 
 import com.intellij.openapi.ui.Messages;
+import com.qi.flutterdevtool.utils.I18nUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
@@ -43,7 +44,7 @@ public class FlutterPageDialog extends JDialog {
         mvcName = nameField.getText();
         useGoRouter = statefulRB.isSelected();
         if (StringUtils.isEmpty(mvcName)) {
-            Messages.showErrorDialog("请输入MVC名称", "错误");
+            Messages.showErrorDialog(I18nUtil.getString("please.enter.a.page.name"), I18nUtil.getString("error"));
             return;
         }
         dispose();

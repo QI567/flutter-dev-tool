@@ -62,7 +62,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="上传图标"/>
+              <text resource-bundle="strings/string" key="upload.icon"/>
             </properties>
           </component>
           <component id="a40d9" class="javax.swing.JLabel">
@@ -121,7 +121,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="上传启动图"/>
+              <text resource-bundle="strings/string" key="upload.launch.image"/>
             </properties>
           </component>
           <grid id="d2778" layout-manager="BorderLayout" hgap="0" vgap="0">

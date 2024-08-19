@@ -1,6 +1,7 @@
 package com.qi.flutterdevtool.action.widget.dialog;
 
 import com.intellij.openapi.ui.Messages;
+import com.qi.flutterdevtool.utils.I18nUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
@@ -45,7 +46,7 @@ public class FlutterWidgetDialog extends JDialog {
         name = nameField.getText();
         isStateful = statefulRB.isSelected();
         if (StringUtils.isEmpty(name)) {
-            Messages.showErrorDialog("请输入组件名称", "错误");
+            Messages.showErrorDialog(I18nUtil.getString("please.enter.widget.name"), I18nUtil.getString("error"));
             return;
         }
         dispose();

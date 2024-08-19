@@ -7,6 +7,7 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.qi.flutterdevtool.action.page.dialog.FlutterPageDialog;
 import com.qi.flutterdevtool.utils.DartFileUtil;
+import com.qi.flutterdevtool.utils.I18nUtil;
 
 import java.io.File;
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class FlutterPageAction extends AnAction {
         File dir = new File(selectedFile.getPath(), name);
         if (!dir.exists()) {
             if (!dir.mkdirs()) {
-                Messages.showErrorDialog("创建MVC路径失败", "错误");
+                Messages.showErrorDialog(I18nUtil.getString("failed.to.create.the.page.path"), I18nUtil.getString("error"));
                 return;
             }
         }
